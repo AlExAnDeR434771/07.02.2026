@@ -1,0 +1,42 @@
+#Пестерев Александр
+#Уровень C
+import random, timeit
+
+#1
+size = 10
+list_  = [random.randint(1, 100) for _ in range(size)]
+
+
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        swapped = False
+        for j in range(0, n-i-1):
+            if arr[j]>arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+                swapped = True
+        if not swapped:
+            break
+    return arr
+
+def sort(arr):
+    arr.sort()
+    return arr
+
+bubble_time = timeit.timeit(lambda: bubble_sort(list_.copy()))
+sort_time = timeit.timeit(lambda: sort(list_.copy()))
+print(f"Размер списка: {size}\n"
+      f"Пузырьковая сортировка:{bubble_time}\n"
+      f"Sort():{sort_time}  ")
+#У sort() вычислительная сложность больше, из-за скорости, полученной благодаря написания на языке С
+
+#2
+n = int(input("Введите размер матрицы:"))
+print("Матрица")
+matrix  = [[random.randint(1, 100) for _ in range(n)]for _ in range(n)]
+for row in matrix:
+    print(row)
+print("Матрица после сдвига")
+_matrix = [matrix[-1]] + matrix[:-1]
+for row in _matrix:
+    print(row)
